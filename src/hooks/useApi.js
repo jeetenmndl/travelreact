@@ -26,7 +26,9 @@ const useApi = (endpoint, options = {}, deps = []) => {
     };
   }, deps);
 
+
   return { data, loading, error };
 };
+
 
 export default useApi;

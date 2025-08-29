@@ -5,7 +5,8 @@ export const registerUser = async (data) => {
   return res.data;
 };
 
+
 export const loginUser = async (data) => {
   const res = await api.post("/auth/login", data);
-  return res.data; // expect { token, user? }
+  return res.data;
 };

@@ -51,3 +51,34 @@ export const famousTrips = [
         budget: 2000
     }
 ]
+
+export  const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      location: "New York, USA",
+      rating: 5,
+      text: "TravelEase made planning our honeymoon to Bali absolutely seamless. The itinerary was perfect and the packing list ensured we didn't forget anything important. Highly recommended!",
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      location: "Toronto, Canada",
+      rating: 5,
+      text: "The Tokyo trip was incredible! Every detail was planned perfectly, from the temple visits to the modern attractions. The local recommendations were spot on.",
+    },
+    {
+      id: 3,
+      name: "Emma Rodriguez",
+      location: "Madrid, Spain",
+      rating: 5,
+      text: "Paris has always been a dream destination, and TravelEase made it a reality. The romantic itinerary and cultural experiences exceeded all expectations.",
+    },
+    {
+      id: 4,
+      name: "David Thompson",
+      location: "London, UK",
+      rating: 5,
+      text: "Outstanding service! The detailed planning and 24/7 support made our family trip stress-free. The kids loved every activity on the itinerary.",
+    },
+  ]
