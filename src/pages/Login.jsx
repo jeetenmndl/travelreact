@@ -38,6 +38,12 @@ export default function Login() {
         },
     })
 
+    const {token} = useAuth();
+
+    if(token){
+        navigate("/dashboard");
+    }
+
     async function onSubmit(data) {
         const { email, password } = data;
         try{

@@ -5,18 +5,30 @@ import Footer from '@/components/landingComponents/Footer'
 import Hero from '@/components/landingComponents/Hero'
 import Navbar from '@/components/landingComponents/Navbar'
 import Testimmonials from '@/components/landingComponents/Testimmonials'
-import React from 'react'
+import useAuth from '@/hooks/useAuth'
+import React, { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+  const { token } = useAuth();
+
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [])
+
+
   return (
     <>
-        <Navbar />
-        <Hero />
-        <Features />
-        <FamousTrips />
-        <Testimmonials />
-        <CTA />
-        <Footer />
+      <Navbar />
+      <Hero />
+      <Features />
+      <FamousTrips />
+      <Testimmonials />
+      <CTA />
+      <Footer />
     </>
   )
 }

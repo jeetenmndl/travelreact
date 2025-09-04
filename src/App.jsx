@@ -3,6 +3,7 @@ import LandingPage from "./pages/LandingPage"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Dashboard from "./pages/Dashboard"
+<<<<<<< HEAD
 import AppLayout from "./components/layout/AppLayout"
 import useAuth from "./hooks/useAuth"
 import { jwtDecode } from "jwt-decode"
@@ -10,6 +11,20 @@ import { jwtDecode } from "jwt-decode"
 function App() {
 
   const { token, logout } = useAuth();
+=======
+import useAuth from "./hooks/useAuth"
+import { jwtDecode } from "jwt-decode"
+import AppLayout from "./components/layout/AppLayout"
+import Trips from "./pages/Trips"
+import AddTrip from "./pages/AddTrip"
+import TripInfo from "./pages/TripInfo"
+import EditTrip from "./pages/EditTrip"
+
+function App() {
+
+
+ const { token, logout } = useAuth();
+>>>>>>> 14a2e89ade2639c36c343cf83862af3f35cedfb4
 
   const ProtectedRoutes = () => {
     try {
@@ -38,18 +53,23 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+   <BrowserRouter>
+   <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
 
-        {/* ProtectedRoutes */}
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <Route element={<ProtectedRoutes />}>
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/trips" element={<Trips />} />
+        <Route path="/trips/add" element={<AddTrip />} />
+        <Route path="/trips/edit/:id" element={<EditTrip />} />
+        <Route path="/trips/:id" element={<TripInfo />} />
+
+      </Route>
+   </Routes>
+   </BrowserRouter>
   )
 }
 
