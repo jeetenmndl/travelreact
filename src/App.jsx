@@ -3,15 +3,6 @@ import LandingPage from "./pages/LandingPage"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Dashboard from "./pages/Dashboard"
-<<<<<<< HEAD
-import AppLayout from "./components/layout/AppLayout"
-import useAuth from "./hooks/useAuth"
-import { jwtDecode } from "jwt-decode"
-
-function App() {
-
-  const { token, logout } = useAuth();
-=======
 import useAuth from "./hooks/useAuth"
 import { jwtDecode } from "jwt-decode"
 import AppLayout from "./components/layout/AppLayout"
@@ -19,12 +10,12 @@ import Trips from "./pages/Trips"
 import AddTrip from "./pages/AddTrip"
 import TripInfo from "./pages/TripInfo"
 import EditTrip from "./pages/EditTrip"
+import PackingPage from "./pages/Packing"
 
 function App() {
 
 
  const { token, logout } = useAuth();
->>>>>>> 14a2e89ade2639c36c343cf83862af3f35cedfb4
 
   const ProtectedRoutes = () => {
     try {
@@ -66,7 +57,7 @@ function App() {
         <Route path="/trips/add" element={<AddTrip />} />
         <Route path="/trips/edit/:id" element={<EditTrip />} />
         <Route path="/trips/:id" element={<TripInfo />} />
-
+        <Route path="/packing" element={<PackingPage />} />
       </Route>
    </Routes>
    </BrowserRouter>
