@@ -49,6 +49,23 @@ const TripInfo = () => {
         }
     }
 
+    const deleteFile = async (publicId) => {
+        console.log("deleting file", publicId)
+        const parts = publicId.split('/');
+        const fileId = parts[parts.length - 1];
+        try{
+            const response = await api.delete(`/trips/${id}/files/${publicId}`);
+            console.log(response)
+            toast.success("File deleted successfully!");
+            setDependancy(dependancy + 1);
+        }
+        catch(err){
+            console.error(err);
+            toast.error("Some error occured");
+        }
+    }
+
+
 
     const calculateDaysUntilTrip = () => {
         if (!trip) return 0
@@ -260,13 +277,16 @@ const TripInfo = () => {
                                             <Users className="h-5 w-5 text-purple-600" />
                                             <h3 className="text-lg font-semibold">Collaborators</h3>
                                         </div>
-                                        <div className="flex flex-wrap gap-3">
-                                            {trip.collaborators.map((id, index) => (
-                                                <div key={index} className="flex items-center space-x-2 p-2 bg-gray-50 rounded-lg">
+                                        <div className="grid md:grid-cols-2 gap-3">
+                                            {trip.collaborators.map((member, index) => (
+                                                <div key={index} className="flex items-center space-x-4 p-2 bg-gray-50 rounded-lg">
                                                     <div className='p-2 bg-amber-400 rounded-full'>
                                                         <User className='w-4 h-4' />
                                                     </div>
-                                                    <span className="text-sm">{id}</span>
+                                                    <div>
+                                                        <p className="text-sm">{member.name}</p>
+                                                        <span className='text-xs text-gray-400'>{member.email}</span>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
@@ -284,8 +304,12 @@ const TripInfo = () => {
                                             {trip.files.map((file, index) => {
                                                 if (checkImage(file.url)) {
                                                     return (
-                                                        <div key={index}>
+                                                        <div key={index} className='relative'>
                                                             <img src={file.url} alt={file._id} className='w-full' />
+
+                                                            <Button variant="icon" className="absolute top-4 right-4  text-red-600 hover:text-white hover:bg-red-500" onClick={() => deleteFile(file.publicId)}>
+                                                                <Trash2 className="h-4 w-4" />
+                                                            </Button>
                                                         </div>
                                                     )
                                                 }

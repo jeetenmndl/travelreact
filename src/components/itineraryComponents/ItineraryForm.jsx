@@ -59,7 +59,7 @@ export function ItineraryForm({
             console.log(response)
             if (response.data._id) {
                 toast.success("Itinerary created successfully!");
-                navigate(`/itineraries/${response.data._id}`);
+                navigate(`/itineraries`);
             } else {
                 toast.error("Failed to create itinerary");
             }
