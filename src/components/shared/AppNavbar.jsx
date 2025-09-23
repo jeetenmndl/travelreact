@@ -36,7 +36,7 @@ const AppNavbar = () => {
                 </div>
             </div>
 
-            <div>
+            <div className='md:hidden'>
                 <Sheet>
                     <SheetTrigger>
                         <Menu className='h-6 w-6' />
