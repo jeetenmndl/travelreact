@@ -23,7 +23,7 @@ const PackingList = ({ selectedTripId }) => {
 
   const [dependancy, setDependancy] = useState(0);
 
-  const { loading, error, data: packingItems } = useApi(`/package-lists/${selectedTripId}`, {}, [dependancy] );
+  const { loading, error, data: packingItems } = useApi(`/package-lists/${selectedTripId}`, {}, [dependancy, selectedTripId] );
 
   // dialog box close or open
   const [isAddingItem, setIsAddingItem] = useState(false);

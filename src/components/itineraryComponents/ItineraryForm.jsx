@@ -33,7 +33,8 @@ export function ItineraryForm({
 }) {
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const tripId = searchParams.get("tripId")
+  const tripId = searchParams.get("tripId");
+  const selectedDate = searchParams.get("date");
 
   const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ export function ItineraryForm({
     defaultValues: initialData || { 
       title:  "",
       description:  "",
-      date: new Date().toISOString().split("T")[0],
+      date: selectedDate || new Date().toISOString().split("T")[0],
       activities:  [
         {
           name: "",
@@ -156,7 +157,7 @@ export function ItineraryForm({
                   <FormItem>
                     <FormLabel>Date</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} />
+                      <Input type="date" readOnly={selectedDate} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

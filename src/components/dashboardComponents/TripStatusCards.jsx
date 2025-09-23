@@ -7,6 +7,31 @@ const TripStatusCards = () => {
 
     const {data: trips, loading, error} = useApi('/trips')
 
+    const getStatusCounts = () => {
+        const counts = {
+            ongoing: 0,
+            upcoming: 0,
+            completed: 0
+        };
+        const currentDate = new Date();
+
+        trips?.forEach(trip => {
+            const startDate = new Date(trip.startDate);
+            const endDate = new Date(trip.endDate);
+            if (startDate > currentDate) {
+                counts.upcoming += 1;
+            }   
+            else if (endDate < currentDate) {
+                counts.completed += 1;
+            }
+            else{
+                counts.ongoing += 1;
+            }
+        });
+
+        return counts;
+    }
+
     if(loading) return <Loading />
     if(error) return <p>Error loading trips</p>
 
@@ -30,7 +55,7 @@ const TripStatusCards = () => {
                     </CardHeader>
                     <CardContent>
                         <div>
-                            <p className='text-4xl font-semibold'>5</p>
+                            <p className='text-4xl font-semibold'>{getStatusCounts().ongoing}</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -41,7 +66,7 @@ const TripStatusCards = () => {
                     </CardHeader>
                     <CardContent>
                         <div>
-                            <p className='text-4xl font-semibold'>5</p>
+                            <p className='text-4xl font-semibold'>{getStatusCounts().upcoming}</p>
                         </div>
                     </CardContent>
                 </Card>
@@ -52,7 +77,7 @@ const TripStatusCards = () => {
                     </CardHeader>
                     <CardContent>
                         <div>
-                            <p className='text-4xl font-semibold'>5</p>
+                            <p className='text-4xl font-semibold'>{getStatusCounts().completed}</p>
                         </div>
                     </CardContent>
                 </Card>
